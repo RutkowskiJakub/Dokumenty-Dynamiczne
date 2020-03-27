@@ -1,0 +1,47 @@
+/* .footer
+{
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+} */
+/* .col-left{
+    background-color:#266c8d !important;
+} */
+/* .col-center{
+    background-color:#b9b4b4 !important;
+} */
+/* .main-container {
+    background-color: blue !important;
+  } */
+
+  html,
+  body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+  }
+
+#wrap {
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 0 0 60px;
+  }
+
+  /* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 10000;
+  }
+
+.row{
+    margin-top: 80px;
+}
