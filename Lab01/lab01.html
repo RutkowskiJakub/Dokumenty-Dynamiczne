@@ -48,33 +48,157 @@
 
 
 
-    <div class="container-fluid main-container container-kontener">
+    <div class="container-fluid main-container">
       <header>
 
       </header>
-
+      <div id="centerwrap">
       <div class="row">
         <div class="col-sm-3 col-left">
           left
         </div>
         <div class="col-sm-6 col-center">
+
           <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div class="form-group row">
+              <label for="ItemName" class="col-sm-2 col-form-label">Nazwa towaru</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ItemName">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+
+            <div class="form-group row">
+              <label for="ItemCode" class="col-sm-2 col-form-label">Kod towaru</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ItemCode">
+              </div>
             </div>
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+            <div class="form-group row">
+                <label for="ItemPrice" class="col-sm-2 col-form-label">Cena</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="ItemNettoPrice" placeholder="netto">
+                </div>
+                
+                <div class="col-sm-5">
+                  <input type="text" class="form-control" id="ItemBruttoPrice" placeholder="brutto">
+                </div>
+              </div>
+
+            <div class="form-group row">
+                <label for="Vat" class="col-sm-2 col-form-label">Stawka VAT</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="Vat">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                  <label for="InputItemCategory" class="col-sm-2 col-form-label">Kategoria</label>
+                  <div class="col-sm-10">
+                  <select id="InputItemCategory" class="form-control">
+                    <option>Opcja 1</option>
+                    <option>Opcja 2</option>
+                    <option>Opcja 3</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                  <div class="col-sm-2">Opcje towaru</div>
+                    <div class="col-sm-10">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                          Opcja 1
+                        </label> 
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck2">
+                        <label class="form-check-label" for="gridCheck2">
+                          Opcja 2
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck3">
+                        <label class="form-check-label" for="gridCheck3">
+                          Opcja 3
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck4">
+                        <label class="form-check-label" for="gridCheck4">
+                          Opcja 4
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck5">
+                        <label class="form-check-label" for="gridCheck5">
+                          Opcja 5
+                        </label>
+                      </div>
+                      
+                      
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label class="col-sm-2">Ocena towaru </label>
+                      <div class="col-sm-10">
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating1" value="RadioRating1">
+                              <label class="form-check-label" for="inlineRadio1">1</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating2" value="RadioRating2">
+                              <label class="form-check-label" for="inlineRadio2">2</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating3" value="RadioRating3">
+                              <label class="form-check-label" for="inlineRadio3">3</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating4" value="RadioRating4">
+                              <label class="form-check-label" for="inlineRadio3">4</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating5" value="RadioRating5">
+                              <label class="form-check-label" for="inlineRadio3">5</label>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2">Zdjęcie towaru</label>
+                    <div class="col-sm-10">
+                      <div class="file-field">
+                        <div class="btn btn-sm float-left">
+                          <input type="file">
+
+                        </div>
+                      </div>
+                    </div>
+
+                          <!-- <div class="file-field">
+                            <div class="btn btn-sm float-left">
+                              <span>Choose file</span>
+                              <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                              <input class="file-path validate" type="text" placeholder="Upload your file">
+                            </div>
+                          </div> -->
+
+                  </div>
+            
+            <div class="form-group row">
+              <div class="col-sm-2"></div>
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-block btn-primary" id="AddItem">Dodaj produkt</button>
+              </div>
+              <!-- <div class="col-sm-2"></div> -->
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
           </form>
+
         </div>
         <div class="col-sm-3 col-right">
           <div class="card" style="width: 18rem;">
@@ -83,18 +207,14 @@
               <p class="card-text">Jakub Rutkowski</p>
             </div>
           </div>
-          <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="pic04.jpg" alt="Card image cap">
-                <div class="card-body">
-                  <p class="card-text">A tu jakiś lamus</p>
-                </div>
-              </div>
+          
         </div>
+      </div>
       </div>
 
       </div>
     </div>
-    <div class="card-footer text-muted"> Stopka</div>
+    <div class="card-footer text-muted" id="footer"> Stopka</div>
 
 
 
