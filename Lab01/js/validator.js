@@ -1,8 +1,8 @@
-function sprawdzTowarName()
+function sprawdzItemName()
 {
-    var formularz_obj=document.getElementById("towar_name");
-    var t_name = formularz_obj.nodeValue;
-    var blad = document.getElementById("towar_name_blad");
+    var formularz_obj=document.getElementById("itemName");
+    var t_name = formularz_obj.value;
+    var blad = document.getElementById("itemNameError");
 
     if (t_name === "")
     {
@@ -33,6 +33,134 @@ function sprawdzTowarName()
     }
     return blad_danych
 }
+
+function sprawdzItemCode()
+{
+    var formularz_obj=document.getElementById("itemCode");
+    var t_code = formularz_obj.value;
+    var blad = document.getElementById("itemCodeError");
+    var codeRGEX = /^([a-z]|[0-9]|[A-Z]){2}-([a-z]|[0-9]|[A-Z]){2}$/
+    var codeResult = codeRGEX.test(t_code)
+
+    if (t_code === "")
+    {
+        blad.innerHTML = "Podaj kod towaru";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=false;
+    }
+    else if (!codeResult)
+    {
+        blad.innerHTML = "Zly format kodu (XX-XX)";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=true;
+    }
+    else
+    {
+        blad.classList.remove("invalid-feedback");
+        formularz_obj.classList.remove("is-invalid");
+        blad.classList.add("valid-feedback");
+        formularz_obj.classList.add("is-valid");
+        blad.innerHTML = "";
+        blad_danych=false;
+    }
+    return blad_danych
+}
+
+function sprawdzItemNettoPrice()
+{
+    var formularz_obj=document.getElementById("itemNettoPrice");
+    var t_netto = formularz_obj.value;
+    var blad = document.getElementById("itemNettoPriceError");
+    var nettoRGEX = /(^(\d+\.\d{1,2})$)|^(\d+)$/
+    var nettoRGEX2 = /^(\d+)$/
+    var nettoResult = nettoRGEX.test(t_netto);
+    var nettoResult2 = nettoRGEX2.test(t_netto);
+
+    if (t_netto === "")
+    {
+        blad.innerHTML = "Podaj cene towaru";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=false;
+    }
+    else if (!nettoResult)
+    {
+        blad.innerHTML = "Zły format ceny";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=true;
+    }
+    else
+    {
+        if(nettoResult2)
+        {
+            document.getElementById("itemNettoPrice").value += ".00";
+        }
+
+            blad.classList.remove("invalid-feedback");
+            formularz_obj.classList.remove("is-invalid");
+            blad.classList.add("valid-feedback");
+            formularz_obj.classList.add("is-valid");
+            blad.innerHTML = "";
+            blad_danych=false;
+    }
+    return blad_danych
+}
+
+
+function sprawdzVat()
+{
+    var formularz_obj=document.getElementById("vat");
+    var t_vat = formularz_obj.value;
+    var blad = document.getElementById("vatError");
+    var vatRGEX = /^[0-9]{1,2}$/
+    var vatResult = vatRGEX.test(t_vat)
+
+    if (t_vat === "")
+    {
+        blad.innerHTML = "Podaj stawkę VAT";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=false;
+    }
+    else if (!vatResult)
+    {
+        blad.innerHTML = "Zła wartość (0-100)";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=true;
+    }
+    else
+    {
+        blad.classList.remove("invalid-feedback");
+        formularz_obj.classList.remove("is-invalid");
+        blad.classList.add("valid-feedback");
+        formularz_obj.classList.add("is-valid");
+        blad.innerHTML = "";
+        blad_danych=false;
+        var a = document.getElementById("itemNettoPrice").value;
+        var b = document.getElementById("vat").value;
+        var c = a+a*(b/100);
+
+        document.getElementById("itemBruttoPrice").value = c;
+    }
+    return blad_danych
+}
+
 
 // w niej mamy wyciagniecie elementu html po id (pola i miejce na komunikat bledu)
 // dodawanie i usuwanie class: vaalid / invalid. i tu te z is- sa to inputow, -feedback do diva z bledem

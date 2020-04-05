@@ -64,32 +64,36 @@
             <div class="form-group row">
               <label for="ItemName" class="col-sm-2 col-form-label">Nazwa towaru</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="ItemName">
+                <input type="text" class="form-control" id="itemName" onBlur="sprawdzItemName()">
+                <div id="itemNameError"></div>
               </div>
             </div>
 
             <div class="form-group row">
               <label for="ItemCode" class="col-sm-2 col-form-label">Kod towaru</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="ItemCode">
+                <input type="text" class="form-control" id="itemCode" onBlur="sprawdzItemCode()">
+                <div id="itemCodeError"></div>
               </div>
             </div>
 
             <div class="form-group row">
                 <label for="ItemPrice" class="col-sm-2 col-form-label">Cena</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="ItemNettoPrice" placeholder="netto">
+                  <input type="number" step=0.01 class="form-control" id="itemNettoPrice" placeholder="netto" onBlur="sprawdzItemNettoPrice()">
+                  <div id="itemNettoPriceError"></div>
                 </div>
                 
                 <div class="col-sm-5">
-                  <input type="text" class="form-control" id="ItemBruttoPrice" placeholder="brutto">
+                  <input type="number" step=0.01 class="form-control" id="itemBruttoPrice" placeholder="brutto" disabled>
                 </div>
               </div>
 
             <div class="form-group row">
                 <label for="Vat" class="col-sm-2 col-form-label">Stawka VAT</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="Vat">
+                  <input type="number" class="form-control" id="vat" onBlur="sprawdzVat()">
+                  <div id="vatError"></div>
                 </div>
               </div>
 
@@ -146,23 +150,23 @@
                       <label class="col-sm-2">Ocena towaru </label>
                       <div class="col-sm-10">
                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating1" value="RadioRating1">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioRating1" value="RadioRating1">
                               <label class="form-check-label" for="inlineRadio1">1</label>
                           </div>
                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating2" value="RadioRating2">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioRating2" value="RadioRating2">
                               <label class="form-check-label" for="inlineRadio2">2</label>
                           </div>
                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating3" value="RadioRating3">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioRating3" value="RadioRating3">
                               <label class="form-check-label" for="inlineRadio3">3</label>
                           </div>
                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating4" value="RadioRating4">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioRating4" value="RadioRating4">
                               <label class="form-check-label" for="inlineRadio3">4</label>
                           </div>
                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="RadioRating5" value="RadioRating5">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioRating5" value="RadioRating5">
                               <label class="form-check-label" for="inlineRadio3">5</label>
                           </div>
                       </div>
