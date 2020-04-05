@@ -113,6 +113,10 @@ function sprawdzItemNettoPrice()
             formularz_obj.classList.add("is-valid");
             blad.innerHTML = "";
             blad_danych=false;
+            var a = parseFloat(document.getElementById("itemNettoPrice").value);
+            var b = parseFloat(document.getElementById("vat").value);
+            var c = a+a*(b/100);
+            document.getElementById("itemBruttoPrice").value = c;
     }
     return blad_danych
 }
@@ -152,11 +156,67 @@ function sprawdzVat()
         formularz_obj.classList.add("is-valid");
         blad.innerHTML = "";
         blad_danych=false;
-        var a = document.getElementById("itemNettoPrice").value;
-        var b = document.getElementById("vat").value;
+        var a = parseFloat(document.getElementById("itemNettoPrice").value);
+        var b = parseFloat(document.getElementById("vat").value);
         var c = a+a*(b/100);
-
         document.getElementById("itemBruttoPrice").value = c;
+    }
+    return blad_danych
+}
+
+function sprawdzKategorie()
+{
+    var formularz_obj=document.getElementById("inputItemCategory");
+    var t_category = formularz_obj.value;
+    var blad = document.getElementById("categoryError");
+
+
+    if (t_category === "")
+    {
+        blad.innerHTML = "Wybierz kategorię";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=false;
+    }
+    else
+    {
+        blad.classList.remove("invalid-feedback");
+        formularz_obj.classList.remove("is-invalid");
+        blad.classList.add("valid-feedback");
+        formularz_obj.classList.add("is-valid");
+        blad.innerHTML = "";
+        blad_danych=false;
+    }
+    return blad_danych
+}
+
+function sprawdzOpcje()
+{
+       
+    var formularz_obj=document.getElementById("gridCheck1");
+    var t_options = formularz_obj.value;
+    var blad = document.getElementById("optionsError");
+
+    if (1==1)
+    {
+        blad.innerHTML = "Wybierz przynajmniej 2 opcje";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=false;
+    }
+    else
+    {
+        blad.classList.remove("invalid-feedback");
+        formularz_obj.classList.remove("is-invalid");
+        blad.classList.add("valid-feedback");
+        formularz_obj.classList.add("is-valid");
+        blad.innerHTML = "";
+        blad_danych=false;
+        //document.getElementById("itemBruttoPrice").value = 69;
     }
     return blad_danych
 }
