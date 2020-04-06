@@ -11,7 +11,7 @@ function sprawdzItemName()
         formularz_obj.classList.add("is-invalid");
         blad.classList.remove("valid-feedback");
         formularz_obj.classList.remove("is-valid");
-        blad_danych=false;
+        blad_danych=true;
     }
     else if (t_name.length > 10)
     {
@@ -49,7 +49,7 @@ function sprawdzItemCode()
         formularz_obj.classList.add("is-invalid");
         blad.classList.remove("valid-feedback");
         formularz_obj.classList.remove("is-valid");
-        blad_danych=false;
+        blad_danych=true;
     }
     else if (!codeResult)
     {
@@ -89,7 +89,7 @@ function sprawdzItemNettoPrice()
         formularz_obj.classList.add("is-invalid");
         blad.classList.remove("valid-feedback");
         formularz_obj.classList.remove("is-valid");
-        blad_danych=false;
+        blad_danych=true;
         document.getElementById("itemBruttoPrice").value = "";
     }
     else if (!nettoResult)
@@ -138,7 +138,7 @@ function sprawdzVat()
         formularz_obj.classList.add("is-invalid");
         blad.classList.remove("valid-feedback");
         formularz_obj.classList.remove("is-valid");
-        blad_danych=false;
+        blad_danych=true;
         document.getElementById("itemBruttoPrice").value = "";
     }
     else if (!vatResult)
@@ -180,7 +180,7 @@ function sprawdzKategorie()
         formularz_obj.classList.add("is-invalid");
         blad.classList.remove("valid-feedback");
         formularz_obj.classList.remove("is-valid");
-        blad_danych=false;
+        blad_danych=true;
     }
     else
     {
@@ -219,7 +219,7 @@ function sprawdzOpcje()
         //formularz_obj.classList.add("is-invalid");
         blad.classList.remove("alert-success");
         //formularz_obj.classList.remove("is-valid");
-        blad_danych=false;
+        blad_danych=true;
     }
     else
     {
@@ -235,19 +235,19 @@ function sprawdzOpcje()
 
 function sprawdzOpcje()
 {
-    console.log("weszło w sprawdzopcje()");
+    //console.log("weszło w sprawdzopcje()");
     var formularz_obj=document.getElementsByClassName("form-check-input");
     //t_option = document.getElementsByClassName("form-check");
     var blad = document.getElementById("optionsError");
     var counter=0;
-    console.log(formularz_obj);
+    //console.log(formularz_obj);
     for (i=0;i<5;i++)
     {
-        console.log("weszło w fora");
+        //console.log("weszło w fora");
         if (formularz_obj[i].checked)
         {
             counter++;
-            console.log("zlicza counter: " + counter);
+            //console.log("zlicza counter: " + counter);
         }
     }
 
@@ -258,7 +258,7 @@ function sprawdzOpcje()
         //formularz_obj.classList.add("is-invalid");
         blad.classList.remove("alert-success");
         //formularz_obj.classList.remove("is-valid");
-        blad_danych=false;
+        blad_danych=true;
     }
     else
     {
@@ -275,15 +275,20 @@ function sprawdzOpcje()
 function sprawdzWszystko()
 {
     console.log("Weszlo w sprawdzanie wszystkiego");
-    if (sprawdzItemCode() == true && sprawdzItemName == true && sprawdzItemNettoPrice == true && sprawdzKategorie == true && sprawdzOpcje == true && sprawdzVat == true)
+    if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false)
     {
-        console.log("Wszystko bangla");
+        alert("JEST OK!");
     } 
     else
     {
         console.log("Nie bangla");
-        console.log(sprawdzItemCode());
-        console.log(sprawdzItemName());
+        console.log("sprawdz item name: " + sprawdzItemName());
+        console.log("sprawdz item code: " + sprawdzItemCode());
+        console.log("sprawdz item nettoprice: " + sprawdzItemNettoPrice());
+        console.log("sprawdz kategorie: " + sprawdzKategorie());
+        console.log("sprawdz opcje: " + sprawdzOpcje());
+        console.log("sprawdz vat: " + sprawdzVat());
+        
     }
 }
 
