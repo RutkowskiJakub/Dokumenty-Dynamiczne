@@ -197,7 +197,7 @@ function sprawdzKategorie()
 function sprawdzOpcje()
 {
     console.log("weszło w sprawdzopcje()");
-    var formularz_obj=document.getElementsByClassName("form-check");
+    var formularz_obj=document.getElementsByClassName("form-check-input");
     //t_option = document.getElementsByClassName("form-check");
     var blad = document.getElementById("optionsError");
     var counter=0;
@@ -215,23 +215,78 @@ function sprawdzOpcje()
     if (counter<2)
     {
         blad.innerHTML = "Wybierz przynajmniej 2 opcje";
-        blad.classList.add("invalid-feedback");
+        blad.classList.add("alert-danger");
         //formularz_obj.classList.add("is-invalid");
-        blad.classList.remove("valid-feedback");
+        blad.classList.remove("alert-success");
         //formularz_obj.classList.remove("is-valid");
         blad_danych=false;
     }
     else
     {
-        blad.classList.remove("invalid-feedback");
+        blad.classList.remove("alert-danger");
         //formularz_obj.classList.remove("is-invalid");
-        blad.classList.add("valid-feedback");
+        blad.classList.add("alert-success");
         //formularz_obj.classList.add("is-valid");
         blad.innerHTML = "";
         blad_danych=false;
     }
     return blad_danych
 }
+
+function sprawdzOpcje()
+{
+    console.log("weszło w sprawdzopcje()");
+    var formularz_obj=document.getElementsByClassName("form-check-input");
+    //t_option = document.getElementsByClassName("form-check");
+    var blad = document.getElementById("optionsError");
+    var counter=0;
+    console.log(formularz_obj);
+    for (i=0;i<5;i++)
+    {
+        console.log("weszło w fora");
+        if (formularz_obj[i].checked)
+        {
+            counter++;
+            console.log("zlicza counter: " + counter);
+        }
+    }
+
+    if (counter<2)
+    {
+        blad.innerHTML = "Wybierz przynajmniej 2 opcje";
+        blad.classList.add("alert-danger");
+        //formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("alert-success");
+        //formularz_obj.classList.remove("is-valid");
+        blad_danych=false;
+    }
+    else
+    {
+        blad.classList.remove("alert-danger");
+        //formularz_obj.classList.remove("is-invalid");
+        blad.classList.add("alert-success");
+        //formularz_obj.classList.add("is-valid");
+        blad.innerHTML = "";
+        blad_danych=false;
+    }
+    return blad_danych
+}
+
+function sprawdzWszystko()
+{
+    console.log("Weszlo w sprawdzanie wszystkiego");
+    if (sprawdzItemCode() == true && sprawdzItemName == true && sprawdzItemNettoPrice == true && sprawdzKategorie == true && sprawdzOpcje == true && sprawdzVat == true)
+    {
+        console.log("Wszystko bangla");
+    } 
+    else
+    {
+        console.log("Nie bangla");
+        console.log(sprawdzItemCode());
+        console.log(sprawdzItemName());
+    }
+}
+
 
 
 // w niej mamy wyciagniecie elementu html po id (pola i miejce na komunikat bledu)
