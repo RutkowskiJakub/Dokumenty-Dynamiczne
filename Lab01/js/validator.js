@@ -90,6 +90,7 @@ function sprawdzItemNettoPrice()
         blad.classList.remove("valid-feedback");
         formularz_obj.classList.remove("is-valid");
         blad_danych=false;
+        document.getElementById("itemBruttoPrice").value = "";
     }
     else if (!nettoResult)
     {
@@ -138,6 +139,7 @@ function sprawdzVat()
         blad.classList.remove("valid-feedback");
         formularz_obj.classList.remove("is-valid");
         blad_danych=false;
+        document.getElementById("itemBruttoPrice").value = "";
     }
     else if (!vatResult)
     {
@@ -171,7 +173,7 @@ function sprawdzKategorie()
     var blad = document.getElementById("categoryError");
 
 
-    if (t_category === "")
+    if (t_category == 0)
     {
         blad.innerHTML = "Wybierz kategorię";
         blad.classList.add("invalid-feedback");
@@ -194,29 +196,39 @@ function sprawdzKategorie()
 
 function sprawdzOpcje()
 {
-       
-    var formularz_obj=document.getElementById("gridCheck1");
-    var t_options = formularz_obj.value;
+    console.log("weszło w sprawdzopcje()");
+    var formularz_obj=document.getElementsByClassName("form-check");
+    //t_option = document.getElementsByClassName("form-check");
     var blad = document.getElementById("optionsError");
+    var counter=0;
+    console.log(formularz_obj);
+    for (i=0;i<5;i++)
+    {
+        console.log("weszło w fora");
+        if (formularz_obj[i].checked)
+        {
+            counter++;
+            console.log("zlicza counter: " + counter);
+        }
+    }
 
-    if (1==1)
+    if (counter<2)
     {
         blad.innerHTML = "Wybierz przynajmniej 2 opcje";
         blad.classList.add("invalid-feedback");
-        formularz_obj.classList.add("is-invalid");
+        //formularz_obj.classList.add("is-invalid");
         blad.classList.remove("valid-feedback");
-        formularz_obj.classList.remove("is-valid");
+        //formularz_obj.classList.remove("is-valid");
         blad_danych=false;
     }
     else
     {
         blad.classList.remove("invalid-feedback");
-        formularz_obj.classList.remove("is-invalid");
+        //formularz_obj.classList.remove("is-invalid");
         blad.classList.add("valid-feedback");
-        formularz_obj.classList.add("is-valid");
+        //formularz_obj.classList.add("is-valid");
         blad.innerHTML = "";
         blad_danych=false;
-        //document.getElementById("itemBruttoPrice").value = 69;
     }
     return blad_danych
 }

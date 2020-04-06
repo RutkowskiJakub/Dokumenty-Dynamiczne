@@ -100,47 +100,50 @@
               <div class="form-group row">
                   <label for="InputItemCategory" class="col-sm-2 col-form-label">Kategoria</label>
                   <div class="col-sm-10">
-                  <select id="inputItemCategory" class="form-control">
-                    <option>Opcja 1</option>
-                    <option>Opcja 2</option>
-                    <option>Opcja 3</option>
+                  <select type="text" id="inputItemCategory" class="form-control" onBlur="sprawdzKategorie()">
+                    <option value=0>Wybierz kategorię</option>
+                    <option value=1>Kategoria 1</option>
+                    <option value=2>Kategoria 2</option>
+                    <option value=3>Kategoria 3</option>
                   </select>
+                  <div id="categoryError"></div>
                 </div>
               </div>
 
-              <div class="form-group row" id="itemOptions">
+              <div class="form-group row">
                   <div class="col-sm-2">Opcje towaru</div>
                     <div class="col-sm-10">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck1" onBlur="sprawdzOpcje()">
+                      <div class="form-check" id="itemOptions" onclick="sprawdzOpcje()">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
                         <label class="form-check-label" for="gridCheck1">
                           Opcja 1
                         </label> 
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck2" onBlur="sprawdzOpcje()">
+                        <input class="form-check-input" type="checkbox" id="gridCheck2">
                         <label class="form-check-label" for="gridCheck2">
                           Opcja 2
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck3" onBlur="sprawdzOpcje()">
+                        <input class="form-check-input" type="checkbox" id="gridCheck3">
                         <label class="form-check-label" for="gridCheck3">
                           Opcja 3
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck4" onBlur="sprawdzOpcje()">
+                        <input class="form-check-input" type="checkbox" id="gridCheck4">
                         <label class="form-check-label" for="gridCheck4">
                           Opcja 4
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck5" onBlur="sprawdzOpcje()">
+                        <input class="form-check-input" type="checkbox" id="gridCheck5">
                         <label class="form-check-label" for="gridCheck5">
                           Opcja 5
                         </label>
                       </div>
+                      <div id="optionsError"></div>
                       
                       
                       
@@ -161,7 +164,7 @@
                               <label class="form-check-label" for="inlineRadio2">2</label>
                           </div>
                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioRating" value="RadioRating3">
+                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioRating" value="RadioRating3" checked>
                               <label class="form-check-label" for="inlineRadio3">3</label>
                           </div>
                           <div class="form-check form-check-inline">
