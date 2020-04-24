@@ -278,6 +278,28 @@ function sprawdzWszystko()
     if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false)
     {
         alert("JEST OK!");
+        var formularz_obj_name=document.getElementById("itemName");
+        var table_name = formularz_obj_name.value;
+        var formularz_obj_code=document.getElementById("itemCode");
+        var table_code = formularz_obj_code.value;
+        var formularz_obj_netto=document.getElementById("itemNettoPrice");
+        var table_netto = formularz_obj_netto.value;
+        var formularz_obj_vat=document.getElementById("vat");
+        var table_vat = formularz_obj_vat.value;
+
+
+
+        var row = '<tr><td>' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + '</td><td>' + table_vat + '</td><td>22%</td><td>Mar 22, 2011 9:33 AM</td></tr>'
+
+            $row = $(row),
+            // resort table using the current sort; set to false to prevent resort, otherwise
+            // any other value in resort will automatically trigger the table resort.
+            resort = true;
+        $('table')
+            .find('tbody').append($row)
+            .trigger('addRows', [$row, resort]);
+
+
     } 
     else
     {
