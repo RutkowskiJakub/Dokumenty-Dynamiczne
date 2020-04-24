@@ -272,10 +272,37 @@ function sprawdzOpcje()
     return blad_danych
 }
 
+function sprawdzItemPicture()
+{
+    var formularz_obj=document.getElementById("itemPicture");
+    var t_picture = formularz_obj.value;
+    var blad = document.getElementById("itemPictureError");
+
+    if (t_picture === "")
+    {
+        blad.innerHTML = "Podaj nazwe pliku ze zdjęciem";
+        blad.classList.add("invalid-feedback");
+        formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("valid-feedback");
+        formularz_obj.classList.remove("is-valid");
+        blad_danych=true;
+    }
+    else
+    {
+        blad.classList.remove("invalid-feedback");
+        formularz_obj.classList.remove("is-invalid");
+        blad.classList.add("valid-feedback");
+        formularz_obj.classList.add("is-valid");
+        blad.innerHTML = "";
+        blad_danych=false;
+    }
+    return blad_danych
+}
+
 function sprawdzWszystko()
 {
     console.log("Weszlo w sprawdzanie wszystkiego");
-    if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false)
+    if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false && sprawdzItemPicture() == false)
     {
         alert("JEST OK!");
         var formularz_obj_name=document.getElementById("itemName");
@@ -311,9 +338,12 @@ function sprawdzWszystko()
             }
         }
 
+        // var formularz_obj_picture=document.getElementById("itemPicture");
+        // var table_picture = formularz_obj_picture.value;
 
 
-        var row = '<tr><td>' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td></tr>'
+
+        var row = '<tr><td>' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td> ocena </td><td> Zdjecie </td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
