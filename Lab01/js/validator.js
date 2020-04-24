@@ -284,12 +284,36 @@ function sprawdzWszystko()
         var table_code = formularz_obj_code.value;
         var formularz_obj_netto=document.getElementById("itemNettoPrice");
         var table_netto = formularz_obj_netto.value;
+        var formularz_obj_brutto=document.getElementById("itemBruttoPrice");
+        var table_brutto = formularz_obj_brutto.value;
         var formularz_obj_vat=document.getElementById("vat");
         var table_vat = formularz_obj_vat.value;
+        var formularz_obj_category=document.getElementById("inputItemCategory");
+        var table_category = formularz_obj_category.value;
+
+        var formularz_obj_options=document.getElementsByClassName("form-check-input");
+        var table_options = ""
+        for (i=0;i<5;i++)
+        {
+            console.log("weszło w fora");
+            if (formularz_obj_options[i].checked)
+            {
+                table_options = table_options + " " + formularz_obj_options[i].value
+            }
+        }
+
+        var formularz_obj_rating=document.getElementsByClassName("form-radio-input");
+        for (i=0;i<5;i++)
+        {
+            if (formularz_obj_rating[i].checked)
+            {
+                table_rating = i+1;
+            }
+        }
 
 
 
-        var row = '<tr><td>' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + '</td><td>' + table_vat + '</td><td>22%</td><td>Mar 22, 2011 9:33 AM</td></tr>'
+        var row = '<tr><td>' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
