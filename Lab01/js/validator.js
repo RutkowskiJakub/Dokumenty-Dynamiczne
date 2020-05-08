@@ -301,14 +301,14 @@ function sprawdzItemPicture()
 function sprawdzNameInTable()
 {
     console.log("Hej, jestem w sprawdzNameInTable()")
-    var formularz_obj=document.getElementsByClassName("nameInTable");
-    console.log("formularz_obj = " + formularz_obj);
-    console.log("formularz_obj[0] = " + formularz_obj[0]);
-    console.log("formularz_obj[1] = " + formularz_obj[1]);
-    console.log("formularz_obj[0].value = " + formularz_obj[0].value)
+    var ItemNameInTable=document.getElementsByClassName("nameInTable");
+    console.log("formularz_obj = " + ItemNameInTable);
+    console.log("formularz_obj[0] = " + ItemNameInTable[0]);
+    console.log("formularz_obj[1] = " + ItemNameInTable[1]);
+    console.log("formularz_obj[0].value = " + ItemNameInTable[0].value)
     var x = document.getElementsByClassName("nameInTable").length;
     console.log("(liczba elementów w nameInTable) x = " + x);
-    var test = formularz_obj.value;
+    var test = ItemNameInTable.value;
     console.log("test: " + test);
 }
 
@@ -358,7 +358,7 @@ function sprawdzWszystko()
 
 
 
-        var row = '<tr><td class=nameInTable>' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
