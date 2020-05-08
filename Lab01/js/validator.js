@@ -302,10 +302,11 @@ function sprawdzNameInTable()
 {
     console.log("Hej, jestem w sprawdzNameInTable()")
     var ItemNameInTable=document.getElementsByClassName("nameInTable");
-    console.log("formularz_obj = " + ItemNameInTable);
-    console.log("formularz_obj[0] = " + ItemNameInTable[0]);
-    console.log("formularz_obj[1] = " + ItemNameInTable[1]);
-    console.log("formularz_obj[0].value = " + ItemNameInTable[0].value)
+    console.log("ItemNameInTable = " + ItemNameInTable);
+    console.log("ItemNameInTable[0] = " + ItemNameInTable[0]);
+    console.log("ItemNameInTable[1] = " + ItemNameInTable[1]);
+    console.log("ItemNameInTable[0].value = " + ItemNameInTable[0].value)
+    console.log("ItemNameInTable.value = " + ItemNameInTable.value);
     var x = document.getElementsByClassName("nameInTable").length;
     console.log("(liczba elementów w nameInTable) x = " + x);
     var test = ItemNameInTable.value;
