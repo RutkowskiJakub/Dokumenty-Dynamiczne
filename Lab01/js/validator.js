@@ -301,6 +301,15 @@ function sprawdzItemPicture()
 function sprawdzNameInTable()
 {
     console.log("Hej, jestem w sprawdzNameInTable()")
+    var formularz_obj=document.getElementsByClassName("nameInTable");
+    console.log("formularz_obj = " + formularz_obj);
+    console.log("formularz_obj[0] = " + formularz_obj[0]);
+    console.log("formularz_obj[1] = " + formularz_obj[1]);
+    console.log("formularz_obj[0].value = " + formularz_obj[0].value)
+    var x = document.getElementsByClassName("nameInTable").length;
+    console.log("(liczba elementów w nameInTable) x = " + x);
+    var test = formularz_obj.value;
+    console.log("test: " + test);
 }
 
 function sprawdzWszystko()
