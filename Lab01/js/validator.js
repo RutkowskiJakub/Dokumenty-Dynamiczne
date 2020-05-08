@@ -300,23 +300,53 @@ function sprawdzItemPicture()
 }
 function sprawdzNameInTable()
 {
-    console.log("Hej, jestem w sprawdzNameInTable()")
-    var ItemNameInTable=document.getElementsByClassName("nameInTable");
-    console.log("ItemNameInTable = " + ItemNameInTable);
-    console.log("ItemNameInTable[0] = " + ItemNameInTable[0]);
-    console.log("ItemNameInTable[1] = " + ItemNameInTable[1]);
-    console.log("ItemNameInTable[0].value = " + ItemNameInTable[0].value)
-    console.log("ItemNameInTable.value = " + ItemNameInTable.value);
-    var x = document.getElementsByClassName("nameInTable").length;
-    console.log("(liczba elementów w nameInTable) x = " + x);
-    var test = ItemNameInTable.value;
-    console.log("test: " + test);
+    var itemNameInTable=document.getElementsByClassName("nameInTable");
+    var iloscProduktow = document.getElementsByClassName("nameInTable").length;
+    var blad = document.getElementById("itemDuplicationError");
+    var duplicationFlag = 0;
+    var nazwaProduktuForm=document.getElementById("itemName");
+    var nazwaProduktu=nazwaProduktuForm.value;
+
+    console.log("Ilosc produktow = " + iloscProduktow);
+    //console.log("ItemNameInTable[0] = " + itemNameInTable[0].textContent);
+    if(iloscProduktow>0)
+    {
+        for(i=0;i<iloscProduktow;i++)
+        {
+            console.log("itemNameInTable["+i+"].textContent = " + itemNameInTable[i].textContent);
+            console.log("nazwaProduktu = " + nazwaProduktu);
+            if (itemNameInTable[i].textContent == nazwaProduktu)
+            {
+                duplicationFlag = 1;
+                console.log("duplicationFlag = " + duplicationFlag);
+            }
+        }
+    }
+    if (duplicationFlag == 1)
+    {
+        blad.innerHTML = "Taki przedmiot już znajduje się w tabeli";
+        blad.classList.add("alert-danger");
+        //formularz_obj.classList.add("is-invalid");
+        blad.classList.remove("alert-success");
+        //formularz_obj.classList.remove("is-valid");
+        blad_danych=true;
+    }
+    else
+    {
+        blad.classList.remove("alert-danger");
+        //formularz_obj.classList.remove("is-invalid");
+        blad.classList.add("alert-success");
+        //formularz_obj.classList.add("is-valid");
+        blad.innerHTML = "";
+        blad_danych=false;
+    }
+    return blad_danych
 }
 
 function sprawdzWszystko()
 {
     console.log("Weszlo w sprawdzanie wszystkiego");
-    if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false && sprawdzItemPicture() == false)
+    if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false && sprawdzItemPicture() == false && sprawdzNameInTable() == false)
     {
         //alert("JEST OK!");
         var formularz_obj_name=document.getElementById("itemName");
