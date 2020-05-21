@@ -343,18 +343,13 @@ function sprawdzNameInTable()
     return blad_danych
 }
 
-function deleteItem()
+function deleteItem(index)
 {
-    $('#myTable').delegate('button.remove', 'click' ,function() {
-        var t = $('table');
-        $(this).closest('tr').remove();
-        t.trigger('update');
-  
-        alert("Poprawnie usunięto produkt z tablicy.");
-  
-        return false;
-      });
-}
+    $(index).closest('tr').remove();
+    $('.tablesorter').trigger('update');
+  }
+
+  var _row = null;
 
 function editItem(index)
 {
@@ -362,6 +357,10 @@ function editItem(index)
         indeksWiersza = $(this).parent().index()+1;
         console.log(indeksWiersza);
         AddItem.innerText = "Zapisz zmiany";
+        document.getElementById('AddItem').setAttribute('onClick','zapiszZmiany()');
+
+
+
         itemName.value = table.rows[indeksWiersza].cells[0].innerHTML;
         itemCode.value = table.rows[indeksWiersza].cells[1].innerHTML;
         itemNettoPrice.value = parseInt(table.rows[indeksWiersza].cells[2].innerHTML);
@@ -374,6 +373,13 @@ function editItem(index)
         var row = $(index).parents('tr')
         var col = row.children('td');
         console.log("test");
+
+        document.getElementById("gridCheck1").checked = false;
+        document.getElementById("gridCheck2").checked = false;
+        document.getElementById("gridCheck3").checked = false;
+        document.getElementById("gridCheck4").checked = false;
+        document.getElementById("gridCheck5").checked = false;
+        
 
 
         var opts = $(col[6]).text().split(" ");
@@ -408,25 +414,83 @@ function editItem(index)
             }
         });
 
-
-
-        
-
-
-        // opcje = document.getElementById("table").rows[indeksWiersza].cells[6].innerHTML;
-        // podzieloneOpcje = opcje.split(', ');
-        // itemOptions.forEach(element => {
-        //     for (let i=0; i <= podzieloneOpcje.length; i++){
-        //         if (element.value == podzieloneOpcje[i]){
-        //             element.checked = true;
-        //         }
-        //     }
-        // });
-        
-
-
+        if ($(col[7]).text().localeCompare('1') == 0){
+            document.getElementById('radioRating1').checked=true;
+        }
+        if ($(col[7]).text().localeCompare('2') == 0){
+            document.getElementById('radioRating2').checked=true;
+        }
+        if ($(col[7]).text().localeCompare('3') == 0){
+            document.getElementById('radioRating3').checked=true;
+        }
+        if ($(col[7]).text().localeCompare('4') == 0){
+            document.getElementById('radioRating4').value="4";
+        }
+        if ($(col[7]).text().localeCompare('5') == 0){
+            document.getElementById('radioRating5').checked=true;
+        }
         
     })
+    // $(index).closest('tr').remove();
+    // $('.tablesorter').trigger('update');
+    // $(index).closest('tr').remove();
+    // $('.tablesorter').trigger('update');
+}
+
+function zapiszZmiany()
+{
+    if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false && sprawdzItemPicture() == false && sprawdzNameInTable() == false)
+    {
+
+        //alert("JEST OK!");
+        var formularz_obj_name=document.getElementById("itemName");
+        var table_name = formularz_obj_name.value;
+        var formularz_obj_code=document.getElementById("itemCode");
+        var table_code = formularz_obj_code.value;
+        var formularz_obj_netto=document.getElementById("itemNettoPrice");
+        var table_netto = formularz_obj_netto.value;
+        var formularz_obj_brutto=document.getElementById("itemBruttoPrice");
+        var table_brutto = formularz_obj_brutto.value;
+        var formularz_obj_vat=document.getElementById("vat");
+        var table_vat = formularz_obj_vat.value;
+        var formularz_obj_category=document.getElementById("inputItemCategory");
+        var table_category = formularz_obj_category.value;
+        var formularz_obj_options=document.getElementsByClassName("form-check-input");
+        var table_options = ""
+        for (i=0;i<5;i++)
+        {
+            console.log("weszło w fora");
+            if (formularz_obj_options[i].checked)
+            {
+                table_options = table_options + " " + formularz_obj_options[i].value
+            }
+        }
+
+        var formularz_obj_rating=document.getElementsByClassName("form-radio-input");
+        var table_rating;
+        for (i=0;i<5;i++)
+        {
+            if (formularz_obj_rating[i].checked)
+            {
+                table_rating = i+1;
+            }
+        }
+
+        var formularz_obj_picture=document.getElementById("itemPicture");
+        var table_picture = formularz_obj_picture.value;
+
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" onClick="editItem(this)">🖊</button><button type="button" id="addToCart">🛒</button><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+
+            $row = $(row),
+            resort = true;
+        $('table')
+            .find('tbody').append($row)
+            .trigger('addRows', [$row, resort]);
+
+            AddItem.innerText = "Dodaj produkt";
+            document.getElementById('AddItem').setAttribute('onClick','sprawdzWszystko()');
+
+    } 
 }
 
 function sprawdzWszystko()
@@ -475,7 +539,7 @@ function sprawdzWszystko()
 
 
 
-        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" onClick="editItem(this)">🖊</button><button type="button" id="addToCart">🛒</button><button type="button" class="remove" title="Usun wiersz">X</button></td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" onClick="editItem(this)">🖊</button><button type="button" id="addToCart">🛒</button><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
