@@ -342,13 +342,91 @@ function sprawdzNameInTable()
     }
     return blad_danych
 }
-function editItem()
+
+function deleteItem()
 {
-    var numerProduktu = document.getElementsByClassName("nameInTable").this;
-    console.log("numer produktu = " + numerProduktu);
-    $('table')
-        .find('tbody').delete($this);
-   
+    $('#myTable').delegate('button.remove', 'click' ,function() {
+        var t = $('table');
+        $(this).closest('tr').remove();
+        t.trigger('update');
+  
+        alert("Poprawnie usunięto produkt z tablicy.");
+  
+        return false;
+      });
+}
+
+function editItem(index)
+{
+        $('td').click(function(){
+        indeksWiersza = $(this).parent().index()+1;
+        console.log(indeksWiersza);
+        AddItem.innerText = "Zapisz zmiany";
+        itemName.value = table.rows[indeksWiersza].cells[0].innerHTML;
+        itemCode.value = table.rows[indeksWiersza].cells[1].innerHTML;
+        itemNettoPrice.value = parseInt(table.rows[indeksWiersza].cells[2].innerHTML);
+        itemBruttoPrice.value = parseInt(table.rows[indeksWiersza].cells[3].innerHTML);
+        editedVat= table.rows[indeksWiersza].cells[4].innerHTML;
+        vat.value = parseInt(editedVat.slice(0, -1));
+        inputItemCategory.value = table.rows[indeksWiersza].cells[5].innerHTML;
+        itemPicture.value = table.rows[indeksWiersza].cells[8].innerHTML;
+
+        var row = $(index).parents('tr')
+        var col = row.children('td');
+        console.log("test");
+
+
+        var opts = $(col[6]).text().split(" ");
+        opts.forEach((opt) => {
+            console.log("opts = " + opts);
+            console.log("opt = " + opt);
+            
+            if (opt.localeCompare('Opcja1')==0)
+            {
+                document.getElementById("gridCheck1").checked = true;
+                console.log("Weszło w 1 ifa");
+            }
+            if (opt.localeCompare('Opcja2')==0)
+            {
+                document.getElementById("gridCheck2").checked = true;
+                console.log("Weszło w 2 ifa");
+            }
+            if (opt.localeCompare('Opcja3')==0)
+            {
+                document.getElementById("gridCheck3").checked = true;
+                console.log("Weszło w 3 ifa");
+            }
+            if (opt.localeCompare('Opcja4')==0)
+            {
+                document.getElementById("gridCheck4").checked = true;
+                console.log("Weszło w 4 ifa");
+            }
+            if (opt.localeCompare('Opcja5')==0)
+            {
+                document.getElementById("gridCheck5").checked = true;
+                console.log("Weszło w 5 ifa");
+            }
+        });
+
+
+
+        
+
+
+        // opcje = document.getElementById("table").rows[indeksWiersza].cells[6].innerHTML;
+        // podzieloneOpcje = opcje.split(', ');
+        // itemOptions.forEach(element => {
+        //     for (let i=0; i <= podzieloneOpcje.length; i++){
+        //         if (element.value == podzieloneOpcje[i]){
+        //             element.checked = true;
+        //         }
+        //     }
+        // });
+        
+
+
+        
+    })
 }
 
 function sprawdzWszystko()
@@ -397,7 +475,7 @@ function sprawdzWszystko()
 
 
 
-        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" class="btn btn-primary btn-sm" id="editItem" onClick="editItem()">E</button><button type="button" class="btn btn-primary btn-sm" id="deleteItem">D</button><button type="button" class="btn btn-primary btn-sm" id="addToCart">C</button></td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" onClick="editItem(this)">🖊</button><button type="button" id="addToCart">🛒</button><button type="button" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
@@ -422,23 +500,3 @@ function sprawdzWszystko()
 }
 
 
-
-// w niej mamy wyciagniecie elementu html po id (pola i miejce na komunikat bledu)
-// dodawanie i usuwanie class: vaalid / invalid. i tu te z is- sa to inputow, -feedback do diva z bledem
-// funkcja zwraca wartosc true/false w zaleznosci czy ma blad czy nie.
-
-// 4. w index w formularzu sprawdzamy aby id pola bylo zgodne (tj. towar_name, towar_name_blad) i wygladalo w skrocie jak:
-
-// <div class="form-group">
-//     <label>Nazwa towaru:</label>
-//         <input type="text" class="form-control" id="towar_name" onBlur="sprawdzTowarName()">
-//         <div id="towar_name_blad"></div>       
-// </div>
-
-// jest tu onBlur - wywoluje funkcje po wyjsciu z pola input
-// mozna przetestowac 'oninput
-
-// 5. ja wszystko dizal efekt powinien byc taki: wpisujemy cos i powyjsciu z pola jak jest ok to ramka na zielono, jak zle to naczerwono +
-//  tekst na czerwono pod nia.
-// 6. proponuje robic funkcje walidacyjne osobne na kazde pole - wszystkie w tym pliku validator.js
-//  oraz button w index ustawic na type=button a nie submit ! - strona ma sie nie przeladowac po enter ani po kliknieciu w przycisk
