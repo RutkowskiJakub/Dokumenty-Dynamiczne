@@ -357,7 +357,10 @@ function editItem(index)
         indeksWiersza = $(this).parent().index()+1;
         console.log(indeksWiersza);
         AddItem.innerText = "Zapisz zmiany";
-        document.getElementById('AddItem').setAttribute('onClick','zapiszZmiany()');
+        ind = String(index);
+        console.log("index = " + index);
+        console.log("ind = " + ind);
+        document.getElementById('AddItem').setAttribute('onClick','zapiszZmiany('+indeksWiersza+')');
 
 
 
@@ -384,33 +387,33 @@ function editItem(index)
 
         var opts = $(col[6]).text().split(" ");
         opts.forEach((opt) => {
-            console.log("opts = " + opts);
-            console.log("opt = " + opt);
+            //console.log("opts = " + opts);
+            //console.log("opt = " + opt);
             
             if (opt.localeCompare('Opcja1')==0)
             {
                 document.getElementById("gridCheck1").checked = true;
-                console.log("Weszło w 1 ifa");
+                //console.log("Weszło w 1 ifa");
             }
             if (opt.localeCompare('Opcja2')==0)
             {
                 document.getElementById("gridCheck2").checked = true;
-                console.log("Weszło w 2 ifa");
+                //console.log("Weszło w 2 ifa");
             }
             if (opt.localeCompare('Opcja3')==0)
             {
                 document.getElementById("gridCheck3").checked = true;
-                console.log("Weszło w 3 ifa");
+                //console.log("Weszło w 3 ifa");
             }
             if (opt.localeCompare('Opcja4')==0)
             {
                 document.getElementById("gridCheck4").checked = true;
-                console.log("Weszło w 4 ifa");
+                //console.log("Weszło w 4 ifa");
             }
             if (opt.localeCompare('Opcja5')==0)
             {
                 document.getElementById("gridCheck5").checked = true;
-                console.log("Weszło w 5 ifa");
+                //console.log("Weszło w 5 ifa");
             }
         });
 
@@ -431,14 +434,14 @@ function editItem(index)
         }
         
     })
-    // $(index).closest('tr').remove();
-    // $('.tablesorter').trigger('update');
+    deleteItem(index);
     // $(index).closest('tr').remove();
     // $('.tablesorter').trigger('update');
 }
 
-function zapiszZmiany()
+function zapiszZmiany(index)
 {
+    console.log("Weszło w zapiszZmiany(index)");
     if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false && sprawdzItemPicture() == false && sprawdzNameInTable() == false)
     {
 
@@ -489,6 +492,8 @@ function zapiszZmiany()
 
             AddItem.innerText = "Dodaj produkt";
             document.getElementById('AddItem').setAttribute('onClick','sprawdzWszystko()');
+            // $(index).closest('tr').remove();
+            // $('.tablesorter').trigger('update');
 
     } 
 }
