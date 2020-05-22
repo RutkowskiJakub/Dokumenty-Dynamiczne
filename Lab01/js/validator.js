@@ -345,14 +345,19 @@ function sprawdzNameInTable()
 
 function deleteItem(index)
 {
+
+
+
     $(index).closest('tr').remove();
     $('.tablesorter').trigger('update');
+    console.log("Hej, jestem w deleteItem");
   }
 
   var _row = null;
 
 function editItem(index)
 {
+        console.log("index w editItem = " + index);
         $('td').click(function(){
         indeksWiersza = $(this).parent().index()+1;
         console.log(indeksWiersza);
@@ -434,7 +439,7 @@ function editItem(index)
         }
         
     })
-    deleteItem(index);
+    // deleteItem(index);
     // $(index).closest('tr').remove();
     // $('.tablesorter').trigger('update');
 }
@@ -494,7 +499,7 @@ function zapiszZmiany(index)
             document.getElementById('AddItem').setAttribute('onClick','sprawdzWszystko()');
             // $(index).closest('tr').remove();
             // $('.tablesorter').trigger('update');
-
+            deleteItem(index);
     } 
 }
 
