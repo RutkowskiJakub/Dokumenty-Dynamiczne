@@ -587,6 +587,7 @@ let tablicaKoszyk = [];
 
 $("td.koszyk").on('click', function(event){
 
+    console.log("Jestem w dodaj do koszyka")
     //$('td').click(function(){
     //indeksWiersza = $(this).parent().index()+1;
     indeksWiersza = $(this).parent().index()+1;
