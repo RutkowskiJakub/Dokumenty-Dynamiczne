@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <script type="text/javascript" src="js/validator.js"></script>
+  
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -23,6 +24,7 @@
 
   
   <!-- load jQuery and tablesorter scripts -->
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
   integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
   crossorigin="anonymous"></script>
@@ -246,6 +248,7 @@
             <table id="table" class="tablesorter tablesorter-jui">
               <thead>
                 <tr>
+                  <th style="display:none;">Id</th>
                   <th>Nazwa towaru</th>
                   <th>Kod towaru</th>
                   <th>Cena netto</th>
@@ -255,11 +258,14 @@
                   <th>Opcje</th>
                   <th>Ocena</th>
                   <th>Zdjęcie</th>
-                  <th>Opcje</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td style="display:none;" class="id">1</td>
                   <td>Młotek</td>
                   <td>33-33</td>
                   <td>20</td>
@@ -269,11 +275,9 @@
                   <td>Opcja3</td>
                   <td>4</td>
                   <td>pic.jpg</td>
-                  <td>
-                    <button type="button" onClick="editItem(this)">🖊</button>
-                    <button type="button" id="addToCart">🛒</button>
-                    <button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button>
-                  </td>
+                  <td><button type="button" onclick="editItem(this)">🖊</button></td>
+                  <td class="koszyk"><button type="button" id="addToCart">🛒</button></td>
+                  <td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td>
                 </tr>
               </tbody>
             </table>

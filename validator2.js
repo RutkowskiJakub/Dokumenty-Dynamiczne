@@ -1,5 +1,3 @@
-
-
 function sprawdzItemName()
 {
     var formularz_obj=document.getElementById("itemName");
@@ -359,21 +357,17 @@ function deleteItem(index)
 
 function editItem(index)
 {
-        
-
-        var tablica = document.getElementById("table");
-        var totalRowCount = table.rows.length - 1;
-        console.log("TotalRowCount = " + totalRowCount);
-
         console.log("index w editItem = " + index);
-        $('td').click(function(){
+        $('td.edit').click(function(){
         indeksWiersza = $(this).parent().index()+1;
         console.log(indeksWiersza);
         AddItem.innerText = "Zapisz zmiany";
         ind = String(index);
-        //console.log("index = " + index);
-        //console.log("ind = " + ind);
+        console.log("index = " + index);
+        console.log("ind = " + ind);
         document.getElementById('AddItem').setAttribute('onClick','zapiszZmiany('+indeksWiersza+')');
+
+
 
         itemName.value = table.rows[indeksWiersza].cells[0].innerHTML;
         itemCode.value = table.rows[indeksWiersza].cells[1].innerHTML;
@@ -493,10 +487,7 @@ function zapiszZmiany(index)
         var formularz_obj_picture=document.getElementById("itemPicture");
         var table_picture = formularz_obj_picture.value;
 
-        var tablica = document.getElementById("table");
-        var idNowegoElementu = table.rows.length;
-
-        var row = '<tr><td style="display:none;" class="id">' + idNowegoElementu + '</td><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" onClick="editItem(this)">🖊</button><button type="button" id="addToCart">🛒</button><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td class="edit">' + '<button type="button" onClick="editItem(this)">🖊</button><td class="koszyk"><button type="button" id="addToCart">🛒</button></td><td><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             resort = true;
@@ -558,7 +549,7 @@ function sprawdzWszystko()
 
 
 
-        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" onclick="editItem(this)">🖊</button></td>' + '<td><button type="button" id="addToCart">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" onClick="editItem(this)">🖊</button></td><td class="koszyk"><button type="button">🛒</button></td><td><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
@@ -583,7 +574,8 @@ function sprawdzWszystko()
 }
 
 
-let tablicaKoszyk = [];
+
+let arrayKoszyk = [];
 
 $("td.koszyk").on('click', function(event){
 
@@ -607,9 +599,9 @@ $("td.koszyk").on('click', function(event){
       'cena_brutto': table.rows[indeksWiersza].cells[3].innerHTML
     };
   
-    tablicaKoszyk.push(ob);
+    arrayKoszyk.push(ob);
   
-   localStorage.setItem('myElement', JSON.stringify(tablicaKoszyk));
+   localStorage.setItem('myElement', JSON.stringify(arrayKoszyk));
 
    var rowek = '<tr><td>'+ ob.nazwa +'</td><td class="costProduct">' + ob.cena_brutto + '</td><td>'+ '<input onchange="calculationCart()" type="number" name="quantity" value="1" min="1" max="10">' + '</td></tr>';
     $rowek = $(rowek),
@@ -619,5 +611,12 @@ $("td.koszyk").on('click', function(event){
     .find('tbody').append($rowek)
     .trigger('addRows', [$row, resort2])
     .trigger('update');
+ 
+    
+    //calculationCart();
+    
+
 
 });
+
+
