@@ -357,15 +357,15 @@ function deleteItem(index)
 
   var _row = null;
 
-// function editItem(index)
-// {
+function editItem(index)
+{
         
 
-//         var tablica = document.getElementById("table");
-//         var totalRowCount = table.rows.length - 1;
-//         console.log("TotalRowCount = " + totalRowCount);
+        var tablica = document.getElementById("table");
+        var totalRowCount = table.rows.length - 1;
+        console.log("TotalRowCount = " + totalRowCount);
 
-//         console.log("index w editItem = " + index);
+        console.log("index w editItem = " + index);
         $('td.edycja').click(function(){
         console.log("Jesteśmy w edytowaniu pozycji");
         indeksWiersza = $(this).parent().index()+1;
@@ -449,7 +449,7 @@ function deleteItem(index)
     // deleteItem(index);
     // $(index).closest('tr').remove();
     // $('.tablesorter').trigger('update');
-
+}
 
 function zapiszZmiany(index)
 {
@@ -558,7 +558,7 @@ function sprawdzWszystko()
 
 
 
-        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" ">🖊</button></td>' + '<td><button type="button" id="addToCart">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" ">🖊</button></td>' + '<td><button type="button" id="addToCart" onClick="addToCart(this)">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
@@ -585,23 +585,27 @@ function sprawdzWszystko()
 
 let tablicaKoszyk = [];
 
-$("td.koszyk").on('click', function(event){
-
+function addToCart(){
     console.log("Jestem w dodaj do koszyka")
     //$('td').click(function(){
     //indeksWiersza = $(this).parent().index()+1;
     indeksWiersza = $(this).parent().index()+1;
     console.log(indeksWiersza);
-    console.log(index);
+    //console.log(index);
+
+    
+    var komorka = $(this).closest('tr').find('td');
+    var index = $(this).closest('tr').find('td').index()+1;
+    console.log("komorka = " + komorka);
+    //console.log(komorka.cells[1].innerHTML);
+    console.log("index = " + index);
 
 
     // indexWiersza = $(this).parent().index()+1;
     // console.log('dodaj do koszyka');
     // console.log('Index = ' + index);
     // console.log("IndexWiersza = " + IndexWiersza);
-  
-    
-
+    indeksWiersza=2;
 
     const ob = {
       'nazwa': table.rows[indeksWiersza].cells[0].innerHTML,
@@ -612,13 +616,16 @@ $("td.koszyk").on('click', function(event){
   
    localStorage.setItem('myElement', JSON.stringify(tablicaKoszyk));
 
+ 
+
    var rowek = '<tr><td>'+ ob.nazwa +'</td><td class="costProduct">' + ob.cena_brutto + '</td><td>'+ '<input onchange="calculationCart()" type="number" name="quantity" value="1" min="1" max="10">' + '</td></tr>';
     $rowek = $(rowek),
-    console.log("rowek = " + rowek);
+    //console.log("rowek = " + rowek);
     resort2 = true;
     $('#myTable2')
     .find('tbody').append($rowek)
     .trigger('addRows', [$row, resort2])
     .trigger('update');
 
-});
+}
+

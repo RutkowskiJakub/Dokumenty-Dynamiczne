@@ -577,8 +577,10 @@ function sprawdzWszystko()
 
 let arrayKoszyk = [];
 
-$("td.koszyk").on('click', function(event){
-
+//$("td").on('click', function(event){
+$("table").on("click", "td", function() {
+    alert($( this ).text());
+      
     //$('td').click(function(){
     //indeksWiersza = $(this).parent().index()+1;
     indeksWiersza = $(this).parent().index()+1;
