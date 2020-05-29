@@ -357,16 +357,17 @@ function deleteItem(index)
 
   var _row = null;
 
-function editItem(index)
-{
+// function editItem(index)
+// {
         
 
-        var tablica = document.getElementById("table");
-        var totalRowCount = table.rows.length - 1;
-        console.log("TotalRowCount = " + totalRowCount);
+//         var tablica = document.getElementById("table");
+//         var totalRowCount = table.rows.length - 1;
+//         console.log("TotalRowCount = " + totalRowCount);
 
-        console.log("index w editItem = " + index);
+//         console.log("index w editItem = " + index);
         $('td.edycja').click(function(){
+        console.log("Jesteśmy w edytowaniu pozycji");
         indeksWiersza = $(this).parent().index()+1;
         console.log(indeksWiersza);
         AddItem.innerText = "Zapisz zmiany";
@@ -444,11 +445,11 @@ function editItem(index)
             document.getElementById('radioRating5').checked=true;
         }
         
-    })
+    });
     // deleteItem(index);
     // $(index).closest('tr').remove();
     // $('.tablesorter').trigger('update');
-}
+
 
 function zapiszZmiany(index)
 {
@@ -496,8 +497,7 @@ function zapiszZmiany(index)
         var tablica = document.getElementById("table");
         var idNowegoElementu = table.rows.length;
 
-        var row = '<tr><td style="display:none;" class="id">' + idNowegoElementu + '</td><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td class="edycja"><button type="button" onClick="editItem(this)">🖊</button></td>' + '<td class="koszyk"><button type="button" id="addToCart">🛒</button></td>' + '<td><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
-
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" ">🖊</button></td>' + '<td><button type="button" id="addToCart">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
             $row = $(row),
             resort = true;
         $('table')
@@ -558,7 +558,7 @@ function sprawdzWszystko()
 
 
 
-        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" onclick="editItem(this)">🖊</button></td>' + '<td><button type="button" id="addToCart">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" ">🖊</button></td>' + '<td><button type="button" id="addToCart">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
