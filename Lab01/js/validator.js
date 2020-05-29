@@ -366,7 +366,7 @@ function editItem(index)
         console.log("TotalRowCount = " + totalRowCount);
 
         console.log("index w editItem = " + index);
-        $('td').click(function(){
+        $('td.edycja').click(function(){
         indeksWiersza = $(this).parent().index()+1;
         console.log(indeksWiersza);
         AddItem.innerText = "Zapisz zmiany";
@@ -496,7 +496,7 @@ function zapiszZmiany(index)
         var tablica = document.getElementById("table");
         var idNowegoElementu = table.rows.length;
 
-        var row = '<tr><td style="display:none;" class="id">' + idNowegoElementu + '</td><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td><td>' + '<button type="button" onClick="editItem(this)">🖊</button><button type="button" id="addToCart">🛒</button><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+        var row = '<tr><td style="display:none;" class="id">' + idNowegoElementu + '</td><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td class="edycja"><button type="button" onClick="editItem(this)">🖊</button></td>' + '<td class="koszyk"><button type="button" id="addToCart">🛒</button></td>' + '<td><button type="button" onClick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             resort = true;
