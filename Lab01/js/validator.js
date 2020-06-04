@@ -1,4 +1,4 @@
-
+//const curierBox = document.getElementById("curier");
 
 function sprawdzItemName()
 {
@@ -564,7 +564,7 @@ function sprawdzWszystko()
 
 
 
-        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" ">🖊</button></td>' + '<td><button type="button" id="addToCart" onClick="addToCart('+numberOfNextRow+')">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" onClick=editItem('+numberOfNextRow+') ">🖊</button></td>' + '<td><button type="button" id="addToCart" onClick="addToCart('+numberOfNextRow+')">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
@@ -653,12 +653,14 @@ let valueProductsInCart = [];
 
 
 
-const allProductInput = document.getElementById('allProducts');
-const costCurierInput = document.getElementById('costCurier');
-const allCostInput = document.getElementById('costAll');
+
 
 
 function calculationCart() {
+
+    var allProductInput = document.getElementById('allProducts');
+    var costCurierInput = document.getElementById('costCurier');
+    var allCostInput = document.getElementById('costAll');
 
   let allProductsCost = 0;
   
@@ -671,35 +673,44 @@ for(var i = 0; i < inCartProducts.length; i++)
   allProductsCost += tmpCostOneProduct;
   
 }
-allProductInput.value = allProductsCost + '.00 zł';
+allProductInput.value = allProductsCost + ' zł';
 console.log(allProductsCost);
 
 }
 
 function selectedCurier() {
-  var checkCurier =
-  curierBox.options[curierBox.selectedIndex].text;
+    var curierBox = document.getElementById("curier");
+    //console.log("curierBox = " + curierBox);
+  //var checkCurier = curierBox.options[curierBox.selectedIndex].text;
+    console.log("curierBox.value = " + curierBox.value);
+    var costCurierInput = document.getElementById('costCurier');
 
   switch (curierBox.value) {
     case "15":
     console.log(curierBox.value);
-    costCurierInput.value = curierBox.value + '.00 zł';
+    costCurierInput.value = curierBox.value + ' zł';
       break;
     case "12":
-    costCurierInput.value = curierBox.value + '.00 zł';
+    costCurierInput.value = curierBox.value + ' zł';
       break;
+    case "10":
+    costCurierInput.value = curierBox.value + ' zł';
     case "0":
-    costCurierInput.value = curierBox.value + '.00 zł';
+    costCurierInput.value = curierBox.value + ' zł';
       break;
 
   }
-
-  allCostInput.value = (parseFloat(allProductsCost) + parseFloat(curierBox.value)).toFixed(2) + ' zł';
+  var allCostInput = document.getElementById('costAll');
+  var allProductInput = document.getElementById('allProducts');
+  console.log ("allCostInput.value = " + allCostInput.value);
+  console.log ("allProductInput.value = " + allProductInput.value);
+  console.log ("allProducstsCost.value = " + allProductsCost.value);
+  allCostInput.value = (parseFloat(allProductInput.value) + parseFloat(curierBox.value)).toFixed(2) + ' zł';
 
 }
 
 function finishShopping() {
 
   localStorage.removeItem('myElement');
-  alert("Twoje zamówienie zostało przekazane do realizacji");
+  alert("Dziękujemy za zakupy w naszym sklepie");
 }
