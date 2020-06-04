@@ -714,4 +714,5 @@ function finishShopping() {
 
   localStorage.removeItem('myElement');
   alert("Dziękujemy za zakupy w naszym sklepie");
+  $('#myTable2 tbody').empty();
 }
