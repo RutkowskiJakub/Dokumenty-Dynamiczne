@@ -203,14 +203,14 @@ function sprawdzOpcje()
     //t_option = document.getElementsByClassName("form-check");
     var blad = document.getElementById("optionsError");
     var counter=0;
-    console.log(formularz_obj);
+    //console.log(formularz_obj);
     for (i=0;i<5;i++)
     {
-        console.log("weszło w fora");
+        //console.log("weszło w fora");
         if (formularz_obj[i].checked)
         {
             counter++;
-            console.log("zlicza counter: " + counter);
+            //console.log("zlicza counter: " + counter);
         }
     }
 
@@ -309,18 +309,18 @@ function sprawdzNameInTable()
     var nazwaProduktuForm=document.getElementById("itemName");
     var nazwaProduktu=nazwaProduktuForm.value;
 
-    console.log("Ilosc produktow = " + iloscProduktow);
+    //console.log("Ilosc produktow = " + iloscProduktow);
     //console.log("ItemNameInTable[0] = " + itemNameInTable[0].textContent);
     if(iloscProduktow>0)
     {
         for(i=0;i<iloscProduktow;i++)
         {
-            console.log("itemNameInTable["+i+"].textContent = " + itemNameInTable[i].textContent);
-            console.log("nazwaProduktu = " + nazwaProduktu);
+            //console.log("itemNameInTable["+i+"].textContent = " + itemNameInTable[i].textContent);
+            //console.log("nazwaProduktu = " + nazwaProduktu);
             if (itemNameInTable[i].textContent == nazwaProduktu)
             {
                 duplicationFlag = 1;
-                console.log("duplicationFlag = " + duplicationFlag);
+                //console.log("duplicationFlag = " + duplicationFlag);
             }
         }
     }
@@ -363,13 +363,13 @@ function editItem(index)
 
         var tablica = document.getElementById("table");
         var totalRowCount = table.rows.length - 1;
-        console.log("TotalRowCount = " + totalRowCount);
+        //console.log("TotalRowCount = " + totalRowCount);
 
-        console.log("index w editItem = " + index);
+        //console.log("index w editItem = " + index);
         $('td.edycja').click(function(){
         console.log("Jesteśmy w edytowaniu pozycji");
         indeksWiersza = $(this).parent().index()+1;
-        console.log(indeksWiersza);
+        //console.log(indeksWiersza);
         AddItem.innerText = "Zapisz zmiany";
         ind = String(index);
         //console.log("index = " + index);
@@ -387,7 +387,7 @@ function editItem(index)
 
         var row = $(index).parents('tr')
         var col = row.children('td');
-        console.log("test");
+        //console.log("test");
 
         document.getElementById("gridCheck1").checked = false;
         document.getElementById("gridCheck2").checked = false;
@@ -453,7 +453,7 @@ function editItem(index)
 
 function zapiszZmiany(index)
 {
-    console.log("Weszło w zapiszZmiany(index)");
+    //console.log("Weszło w zapiszZmiany(index)");
     if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false && sprawdzItemPicture() == false && sprawdzNameInTable() == false)
     {
 
@@ -514,7 +514,7 @@ function zapiszZmiany(index)
 
 function sprawdzWszystko()
 {
-    console.log("Weszlo w sprawdzanie wszystkiego");
+    //console.log("Weszlo w sprawdzanie wszystkiego");
     if (sprawdzItemCode() == false && sprawdzItemName() == false && sprawdzItemNettoPrice() == false && sprawdzKategorie() == false && sprawdzOpcje() == false && sprawdzVat() == false && sprawdzItemPicture() == false && sprawdzNameInTable() == false)
     {
         //alert("JEST OK!");
@@ -535,7 +535,7 @@ function sprawdzWszystko()
         var table_options = ""
         for (i=0;i<5;i++)
         {
-            console.log("weszło w fora");
+            //console.log("weszło w fora");
             if (formularz_obj_options[i].checked)
             {
                 table_options = table_options + " " + formularz_obj_options[i].value
@@ -557,8 +557,14 @@ function sprawdzWszystko()
         var table_picture = formularz_obj_picture.value;
 
 
+        var numberOfRows = $('table >tbody >tr').length;
+        var numberOfNextRow = (numberOfRows/2)+1;
+        console.log("numberOfRows = " + numberOfRows);
+        console.log("numberOfNextRow = " + numberOfNextRow);
 
-        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" ">🖊</button></td>' + '<td><button type="button" id="addToCart" onClick="addToCart(this)">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
+
+
+        var row = '<tr><td class="nameInTable">' + table_name + '</td><td>' + table_code + '</td><td>' + table_netto + 'zł</td><td>' + table_brutto + 'zł</td><td>' + table_vat + '%</td><td>'+ table_category +'</td><td>' + table_options + '<td>' + table_rating + '</td><td>' + table_picture + '</td>' + '<td><button type="button" ">🖊</button></td>' + '<td><button type="button" id="addToCart" onClick="addToCart('+numberOfNextRow+')">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>'
 
             $row = $(row),
             // resort table using the current sort; set to false to prevent resort, otherwise
@@ -585,31 +591,35 @@ function sprawdzWszystko()
 
 let tablicaKoszyk = [];
 
-function addToCart(){
+function addToCart(indeks){
     console.log("Jestem w dodaj do koszyka")
     //$('td').click(function(){
     //indeksWiersza = $(this).parent().index()+1;
-    indeksWiersza = $(this).parent().index()+1;
-    console.log(indeksWiersza);
+    //indeksWiersza = $(this).parent().index()+1;
+    //console.log(indeksWiersza);
     //console.log(index);
 
     
-    var komorka = $(this).closest('tr').find('td');
-    var index = $(this).closest('tr').find('td').index()+1;
-    console.log("komorka = " + komorka);
+    //var komorka = $(this).closest('tr').find('td');
+    //var index = $(this).closest('tr').find('td').index()+1;
+    //console.log("komorka = " + komorka);
     //console.log(komorka.cells[1].innerHTML);
-    console.log("index = " + index);
+    //console.log("indeks = " + indeks);
 
 
     // indexWiersza = $(this).parent().index()+1;
     // console.log('dodaj do koszyka');
     // console.log('Index = ' + index);
     // console.log("IndexWiersza = " + IndexWiersza);
-    indeksWiersza=2;
+
+    var cenaZWaluta = table.rows[indeks].cells[3].innerHTML;
+    var cenaBezWaluty = cenaZWaluta.slice(0, -2);
+    
 
     const ob = {
-      'nazwa': table.rows[indeksWiersza].cells[0].innerHTML,
-      'cena_brutto': table.rows[indeksWiersza].cells[3].innerHTML
+      'nazwa': table.rows[indeks].cells[0].innerHTML,
+      'cena_brutto': cenaBezWaluty
+      //'cena_brutto': table.rows[indeks].cells[3].innerHTML
     };
   
     tablicaKoszyk.push(ob);
@@ -624,8 +634,72 @@ function addToCart(){
     resort2 = true;
     $('#myTable2')
     .find('tbody').append($rowek)
-    .trigger('addRows', [$row, resort2])
-    .trigger('update');
+    .trigger('addRows', [$rowek, resort2])
+    //.trigger('update');
+
+    calculationCart();
 
 }
 
+
+//let tableInCart = document.getElementById("myTable2").getElementsByTagName('tbody')[0];
+//let tableInCart2 = document.getElementById("myTable2");
+let allProductsCost = 0;
+let allCost = 0;
+let costCurier = 0;
+let inCartProducts = [];
+let valueProductsInCart = [];
+
+
+
+
+const allProductInput = document.getElementById('allProducts');
+const costCurierInput = document.getElementById('costCurier');
+const allCostInput = document.getElementById('costAll');
+
+
+function calculationCart() {
+
+  let allProductsCost = 0;
+  
+inCartProducts = [...document.getElementsByName('quantity')];
+valueProductsInCart = [...document.getElementsByClassName('costProduct')];
+  
+for(var i = 0; i < inCartProducts.length; i++)
+{
+  let tmpCostOneProduct = inCartProducts[i].value * valueProductsInCart[i].innerHTML;
+  allProductsCost += tmpCostOneProduct;
+  
+}
+allProductInput.value = allProductsCost + '.00 zł';
+console.log(allProductsCost);
+
+}
+
+function selectedCurier() {
+  var checkCurier =
+  curierBox.options[curierBox.selectedIndex].text;
+
+  switch (curierBox.value) {
+    case "15":
+    console.log(curierBox.value);
+    costCurierInput.value = curierBox.value + '.00 zł';
+      break;
+    case "12":
+    costCurierInput.value = curierBox.value + '.00 zł';
+      break;
+    case "0":
+    costCurierInput.value = curierBox.value + '.00 zł';
+      break;
+
+  }
+
+  allCostInput.value = (parseFloat(allProductsCost) + parseFloat(curierBox.value)).toFixed(2) + ' zł';
+
+}
+
+function finishShopping() {
+
+  localStorage.removeItem('myElement');
+  alert("Twoje zamówienie zostało przekazane do realizacji");
+}

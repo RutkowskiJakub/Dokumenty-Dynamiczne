@@ -76,8 +76,9 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="" data-target="#myModal" data-toggle="modal"><button type="button"
-                class="btn btn-info">Koszyk</button></a>
+            <a class="nav-link" href="" data-target="#myModal" data-toggle="modal">
+              <button type="button" id="cartProducts" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Koszyk</button>
+            </a>
           </li>
         </ul>
       </div>
@@ -273,7 +274,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                   <td style="display:none;" class="id">1</td>
                   <td>Młotek</td>
                   <td>33-33</td>
@@ -287,7 +288,7 @@
                   <td class="edycja"><button type="button">🖊</button></td>
                   <td class="koszyk"><button type="button" id="addToCart">🛒</button></td>
                   <td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </row>
@@ -307,8 +308,59 @@
 
       </div>
     </div>
+    <footer>
     <div class="card-footer text-muted" id="footer"> Stopka</div>
+    </footer>
 
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLongTitle">Koszyk</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 <table id="myTable2" class="table table-striped">
+                     <thead>
+                       <tr>
+                         <th>Nazwa</th>
+                         <th>Cena</th>
+                         <th>Ilosc</th>
+                       </tr>
+                     </thead>
+                     <tbody>
+                     </tbody>
+                   </table>
+                   <div class="form-group">
+                     <label for="curier"></label>
+                     <select class="form-control" id="curier" onclick="selectedCurier()">
+                       <option selected>Sposób dostawy</option>
+                       <option value="15">Fedex - 15.00 zł</option>
+                       <option value="12">DPD - 12.00 zł</option>
+                       <option value="10">Paczkomat - 10.00zł</option>
+                       <option value="0">Odbiór osobisty - 0.00 zł</option>
+                     </select>
+                   </div>
+                   <div>
+                       Cena : <input type="text" class="form-control" id="allProducts" placeholder="" readonly="readonly">
+                       <br>
+                       Koszt przesyłki : <input type="text" class="form-control" id="costCurier" placeholder="" readonly="readonly">
+                       <br>
+                       Suma : <input type="text" class="form-control" id="costAll" placeholder="" readonly="readonly">
+                       <br> 
+                   </div>
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="escCart">Zamknij koszyk</button>
+                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="buyCart" onclick="finishShopping()">Kup</button>
+             </div>
+         </div>
+     </div>
+ </div>
 
 
 
