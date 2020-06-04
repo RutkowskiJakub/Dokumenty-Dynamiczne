@@ -366,14 +366,15 @@ function editItem(index)
         //console.log("TotalRowCount = " + totalRowCount);
 
         //console.log("index w editItem = " + index);
-        $('td.edycja').click(function(){
+        //$('td.edycja').click(function(){
         console.log("Jesteśmy w edytowaniu pozycji");
-        indeksWiersza = $(this).parent().index()+1;
+        //indeksWiersza = $(this).parent().index()+1;
         //console.log(indeksWiersza);
         AddItem.innerText = "Zapisz zmiany";
-        ind = String(index);
+        //ind = String(index);
         //console.log("index = " + index);
         //console.log("ind = " + ind);
+        indeksWiersza = index;
         document.getElementById('AddItem').setAttribute('onClick','zapiszZmiany('+indeksWiersza+')');
 
         itemName.value = table.rows[indeksWiersza].cells[0].innerHTML;
@@ -445,11 +446,11 @@ function editItem(index)
             document.getElementById('radioRating5').checked=true;
         }
         
-    });
+}
     // deleteItem(index);
     // $(index).closest('tr').remove();
     // $('.tablesorter').trigger('update');
-}
+
 
 function zapiszZmiany(index)
 {
