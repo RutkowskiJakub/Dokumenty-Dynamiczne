@@ -397,8 +397,16 @@ function editItem(index)
         document.getElementById("gridCheck5").checked = false;
         
 
+        var opcjeDoEdycji = table.rows[indeksWiersza].cells[6].innerHTML;
+        //console.log("test2 = " + test2);
 
-        var opts = $(col[6]).text().split(" ");
+        var opts = opcjeDoEdycji.split(" ");
+
+        var col6 = $(col[6]).text();
+        var col7 = $(col[7]).text();
+        console.log("OPTS = " + opts);
+        console.log("col[7] = " + col7);
+        console.log("col[6] = " + col6);
         opts.forEach((opt) => {
             //console.log("opts = " + opts);
             //console.log("opt = " + opt);
@@ -430,19 +438,23 @@ function editItem(index)
             }
         });
 
-        if ($(col[7]).text().localeCompare('1') == 0){
+        var ocenaDoEdycji = table.rows[indeksWiersza].cells[7].innerHTML;
+        console.log("ocenaDoEdycji = " + ocenaDoEdycji);
+
+
+        if (ocenaDoEdycji.localeCompare('1') == 0){
             document.getElementById('radioRating1').checked=true;
         }
-        if ($(col[7]).text().localeCompare('2') == 0){
+        if (ocenaDoEdycji.localeCompare('2') == 0){
             document.getElementById('radioRating2').checked=true;
         }
-        if ($(col[7]).text().localeCompare('3') == 0){
+        if (ocenaDoEdycji.localeCompare('3') == 0){
             document.getElementById('radioRating3').checked=true;
         }
-        if ($(col[7]).text().localeCompare('4') == 0){
+        if (ocenaDoEdycji.localeCompare('4') == 0){
             document.getElementById('radioRating4').value="4";
         }
-        if ($(col[7]).text().localeCompare('5') == 0){
+        if (ocenaDoEdycji.localeCompare('5') == 0){
             document.getElementById('radioRating5').checked=true;
         }
         
@@ -716,3 +728,7 @@ function finishShopping() {
   alert("Dziękujemy za zakupy w naszym sklepie");
   $('#myTable2 tbody').empty();
 }
+
+// function changeView() {
+//     table.style.display =
+// }
