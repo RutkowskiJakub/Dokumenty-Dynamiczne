@@ -1,0 +1,14 @@
+[
+    {"nazwa" : "młotek", "kod" : "HM-01", "netto" : "35", "brutto" : "41", "vat" : "20", "kategoria" : "1", "opcje" : "Opcja1, Opcja2", "ocena" : "4", "zdjecie" : "hammer.jpg"},
+    {"nazwa" : "piła", "kod" : "SW-30", "netto" : "50", "brutto" : "60", "vat" : "20", "kategoria" : "1", "opcje" : "Opcja1, Opcja2", "ocena" : "5", "zdjecie" : "saw.jpg"},
+    {"nazwa" : "piłka", "kod" : "BL-35", "netto" : "100", "brutto" : "113", "vat" : "13", "kategoria" : "2", "opcje" : "Opcja1, Opcja5", "ocena" : "5", "zdjecie" : "ball.jpg"},
+    {"nazwa" : "pałka", "kod" : "09-97", "netto" : "150", "brutto" : "150", "vat" : "0", "kategoria" : "3", "opcje" : "Opcja1, Opcja5", "ocena" : "4", "zdjecie" : "bat.jpg"},
+    {"nazwa" : "łódka", "kod" : "BT-99", "netto" : "45000", "brutto" : "49500", "vat" : "10", "kategoria" : "3", "opcje" : "Opcja1, Opcja5", "ocena" : "4", "zdjecie" : "hammer.jpg"},
+    {"nazwa" : "samochód", "kod" : "P9-11", "netto" : "500000", "brutto" : "550000", "vat" : "10", "kategoria" : "3", "opcje" : "Opcja1, Opcja5", "ocena" : "4", "zdjecie" : "hammer.jpg"},
+    {"nazwa" : "motocykl", "kod" : "YA-HA", "netto" : "15000", "brutto" : "18000", "vat" : "20", "kategoria" : "3", "opcje" : "Opcja1, Opcja5", "ocena" : "4", "zdjecie" : "hammer.jpg"},
+    {"nazwa" : "zegarek", "kod" : "MV-MT", "netto" : "500", "brutto" : "600", "vat" : "20", "kategoria" : "3", "opcje" : "Opcja1, Opcja5", "ocena" : "4", "zdjecie" : "hammer.jpg"},
+    {"nazwa" : "telefon", "kod" : "IP-69", "netto" : "3000", "brutto" : "3600", "vat" : "20", "kategoria" : "3", "opcje" : "Opcja1, Opcja5", "ocena" : "4", "zdjecie" : "hammer.jpg"},
+    {"nazwa" : "laptop", "kod" : "MA-CB", "netto" : "5000", "brutto" : "6000", "vat" : "20", "kategoria" : "3", "opcje" : "Opcja1, Opcja5", "ocena" : "4", "zdjecie" : "hammer.jpg"}
+
+
+]

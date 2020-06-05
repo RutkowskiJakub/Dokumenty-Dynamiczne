@@ -730,5 +730,37 @@ function finishShopping() {
 }
 
 // function changeView() {
-//     table.style.display =
+//    
 // }
+
+function loadFromJSON(){
+    var products = (function() {
+        var json = null;
+        $.ajax({
+            'type': "Get",
+            'async': false,
+            'global': false,
+            'url': "D:/Studia/Semestr 6/Dokumenty Dynamiczne/Lab01/produkty.json",
+            'dataType': "json",
+            'success': function (data) {
+                json = data;
+            }
+        });
+        return json;
+})();
+
+var table = document.getElementById('table').getElementsByTagName('tbody')[0];
+products.forEach(function(object) {
+    var numberOfRows = $('table >tbody >tr').length;
+    var numberOfNextRow = (numberOfRows/2)+1;
+
+    var row = '<tr><td>'+ object.nazwa +'</td><td>' + object.kod + '</td><td>' + object.netto + '</td><td>' + object.brutto + '</td><td>' + object.vat + '</td><td>' + object.kategoria + '</td><td>'+ object.opcje +'</td><td>'+ object.ocena +'</td><td>'+ object.zdjecie  + '</td>' + '<td><button type="button" onClick=editItem('+numberOfNextRow+') ">🖊</button></td>' + '<td><button type="button" id="addToCart" onClick="addToCart('+numberOfNextRow+')">🛒</button></td>' + '<td><button type="button" onclick="deleteItem(this)" class="remove" title="Usun wiersz">X</button></td></tr>';
+    $row = $(row),
+    clear();
+    restort = true;
+    $('#table')
+    .find('tbody').append($row)
+    .trigger('addRows', [$row, resort]);
+    return false;
+});
+}
